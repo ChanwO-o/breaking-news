@@ -51,9 +51,5 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
     }
 
-    private var onItemClickListener: ((Article) -> Unit)? = null // pass current article to function, open webview page from there
-
-    fun setOnItemClickListener(listener: (Article) -> Unit) {
-        onItemClickListener = listener
-    }
+    var onItemClickListener: ((Article) -> Unit)? = null // pass current article to function, open webview page from there
 }

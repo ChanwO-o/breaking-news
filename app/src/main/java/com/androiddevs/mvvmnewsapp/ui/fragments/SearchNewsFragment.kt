@@ -36,14 +36,16 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 
-        newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("article", it)
+        newsAdapter.apply {
+            onItemClickListener = { it ->
+                val bundle = Bundle().apply {
+                    putSerializable("article", it)
+                }
+                findNavController().navigate(
+                    R.id.action_searchNewsFragment_to_articleFragment,
+                    bundle
+                )
             }
-            findNavController().navigate(
-                R.id.action_searchNewsFragment_to_articleFragment,
-                bundle
-            )
         }
 
         // add delay before search request is sent

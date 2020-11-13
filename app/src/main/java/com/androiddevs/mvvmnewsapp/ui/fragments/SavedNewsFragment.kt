@@ -25,14 +25,16 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 
-        newsAdapter.setOnItemClickListener {
-            val bundle = Bundle().apply {
-                putSerializable("article", it)
+        newsAdapter.apply {
+            onItemClickListener = { it ->
+                val bundle = Bundle().apply {
+                    putSerializable("article", it)
+                }
+                findNavController().navigate(
+                    R.id.action_savedNewsFragment_to_articleFragment,
+                    bundle
+                )
             }
-            findNavController().navigate(
-                R.id.action_savedNewsFragment_to_articleFragment,
-                bundle
-            )
         }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
